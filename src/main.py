@@ -12,14 +12,28 @@ def run_gui(command_queue, event_queue):
     It will run the CustomTkinter main loop.
     """
     logger.info("Starting GUI...")
-    # TODO: Import and initialize CustomTkinter App here
 
-    import time
-    # Placeholder for GUI loop
+    # CustomTkinter needs to run in the main thread (especially on macOS).
+    # Import inside the function to avoid premature initialization issues.
+    from src.gui.app import App
+
+    app = App(command_queue=command_queue, event_queue=event_queue)
+
+    # Setup a periodic check of the event_queue so the GUI can respond to bot workers
+    def check_events():
+        try:
+            while not event_queue.empty():
+                event = event_queue.get_nowait()
+                logger.info(f"GUI received event: {event}")
+        except Exception:
+            pass
+        finally:
+            app.after(100, check_events)
+
+    app.after(100, check_events)
+
     try:
-        while True:
-            # Check for commands or events
-            time.sleep(1)
+        app.mainloop()
     except KeyboardInterrupt:
         logger.info("GUI process interrupted.")
 
@@ -61,7 +75,7 @@ def main():
     # and spawn workers from here.
 
     logger.info("Ready to launch GUI in main thread.")
-    # run_gui(gui_to_bot_queue, bot_to_gui_queue)
+    run_gui(gui_to_bot_queue, bot_to_gui_queue)
 
 if __name__ == '__main__':
     main()
