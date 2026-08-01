@@ -21,7 +21,19 @@ class BotWorker(multiprocessing.Process):
     def setup(self):
         """Initialize resources specific to this worker process."""
         logger.info(f"[Worker {self.instance_id}] Initializing ADB and Vision...")
-        self.adb = ADBController() # In a real scenario, map instance_id to a specific serial
+
+        from src.core.emulators import EmulatorManager
+
+        # Connect to OS-specific emulator
+        emulator_type = EmulatorManager.get_default_emulator()
+        serial = None
+
+        if emulator_type == "mumu":
+            serial = EmulatorManager.connect_mumu(self.instance_id)
+        elif emulator_type == "waydroid":
+            serial = EmulatorManager.connect_waydroid()
+
+        self.adb = ADBController(serial=serial)
         self.vision = VisionEngine()
         # TODO: self.vision.load_template('pack_button', 'pack.png')
 
