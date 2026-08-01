@@ -30,3 +30,7 @@ Lab
 .claude/
 
 .REFACTORING_SUMMARY.md
+
+__pycache__/
+*.pyc
+config.json
