@@ -104,3 +104,7 @@ class App(ctk.CTk):
         self.save_config()
         if self.command_queue:
             self.command_queue.put({"action": "start"})
+
+    def stop_bot(self):
+        if self.command_queue:
+            self.command_queue.put({"action": "stop"})

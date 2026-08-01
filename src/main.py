@@ -32,6 +32,25 @@ def run_gui(command_queue, event_queue):
 
     app.after(100, check_events)
 
+    # Simple message router for commands coming from GUI
+    from src.bot.manager import BotManager
+    bot_manager = BotManager(app.config_manager, event_queue)
+
+    def check_commands():
+        try:
+            while not command_queue.empty():
+                cmd = command_queue.get_nowait()
+                if cmd.get("action") == "start":
+                    bot_manager.start_all()
+                elif cmd.get("action") == "stop":
+                    bot_manager.stop_all()
+        except Exception:
+            pass
+        finally:
+            app.after(100, check_commands)
+
+    app.after(100, check_commands)
+
     try:
         app.mainloop()
     except KeyboardInterrupt:
