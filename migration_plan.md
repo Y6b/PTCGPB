@@ -53,3 +53,18 @@ The goal is to port the PTCGP Bot from AutoHotkey (AHK) to a modern, cross-platf
 - **README Update**: Revamp `README.md` to guide users on installing Python, creating virtual environments, and installing dependencies.
 - **Platform Guides**: Include OS-specific emulator setup guides (e.g., how to enable ADB on Waydroid vs MuMu).
 - **Release Automation**: (Optional) Set up PyInstaller or GitHub Actions to compile standalone executables for Windows, macOS, and Linux to mimic the current easy-to-use distribution.
+
+## 8. Phase 8: Farming Session Loop (Core State Machine)
+- Implement logic to load an account to the emulator (clear app data, inject XML/prefs).
+- Implement logic to launch the Pokemon TCG Pocket app and navigate past the title screen to the main menu.
+- Implement the pack opening sequence (select pack, swipe to open).
+- Implement card recognition (using OpenCV to detect rarities and save to the local database/JSON).
+- Implement app closure and reset for the next loop iteration.
+
+## 9. Phase 9: Wonderpick & Special Event Integration
+- Migrate logic for 13P/96P specific Wonderpick flows.
+- Migrate Special Events missions claim logic.
+
+## 10. Phase 10: Advanced Features & Polish
+- Migrate the Save for Trade (S4T) granular detection (Shinies, Immersives, Crowns).
+- Migrate Discord webhook specific payloads and XML duplicate sorting tools.

@@ -69,19 +69,21 @@ class BotWorker(multiprocessing.Process):
 
     def _do_bot_iteration(self):
         """A single pass of the bot's state machine."""
-        # For phase 4 demonstration, we just log and send a heartbeat event.
-        logger.debug(f"[Worker {self.instance_id}] Executing bot iteration...")
+        from src.bot.states.farming import FarmingSession
 
-        # Example of sending data back to the GUI
+        # Run the Phase 8 full farming loop
+        session = FarmingSession(self.adb, self.vision, self.config, self.instance_id)
+
+        # Send heartbeat to GUI
         self.event_queue.put({
             "source": self.instance_id,
             "type": "heartbeat",
-            "message": "Alive and checking packs."
+            "message": "Starting new farming session..."
         })
 
-        # TODO: Implement actual state machine:
-        # - Check if on main menu
-        # - Click pack
-        # - Swipe to open
-        # - Check for Save For Trade (S4T)
-        # - Reroll if needed
+        success = session.run_loop()
+
+        if success:
+            logger.info(f"[Worker {self.instance_id}] Farming iteration finished successfully.")
+        else:
+            logger.warning(f"[Worker {self.instance_id}] Farming iteration encountered an issue.")

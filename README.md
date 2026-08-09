@@ -38,7 +38,7 @@ The architectural scaffolding is in place (`src/`), but the granular computer-vi
    ```
 3. **Run the Bot**:
    ```bash
-   python src/main.py
+   python -m src.main
    ```
 
 ### Emulator Support
