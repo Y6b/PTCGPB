@@ -16,13 +16,34 @@ https://ko-fi.com/kevnitg
 
 *Thanks for your support, and let’s keep those god packs coming!* 😄
 
-# **__Arturo's Pokemon Trading Card Game Pocket Bot__**
+# **__Arturo's Pokemon Trading Card Game Pocket Bot (Python Edition)__**
 *Special thanks to all [contributors](https://github.com/Arturo-1212/PTCGPB/graphs/contributors)! Thanks to everyone else who has helped test or has contributed their suggestions to make the bot better!*
 
 **__What does this do?__**
-Creates bots and looks for desireable cards to save and trade to your main account, or to wonderpick from your main account. Getting setup for wonderpick takes weeks of daily pulls to reach 96 packs opened before being elibile to be visible within Wonder Pick, but if you wish to simply find cards to trade to your main, you can get setup quickly! 
+Creates bots and looks for desireable cards to save and trade to your main account, or to wonderpick from your main account. Getting setup for wonderpick takes weeks of daily pulls to reach 96 packs opened before being elibile to be visible within Wonder Pick, but if you wish to simply find cards to trade to your main, you can get setup quickly!
 
 Join the discord for an updated guide, latest links, and support: https://discord.gg/C9Nyf7P4sT
+
+## ⚠️ Python Migration Notice
+This branch represents the active migration of the bot from AutoHotkey (Windows-only) to a fully cross-platform Python architecture supporting Windows, macOS, and Linux (via Waydroid).
+
+The architectural scaffolding is in place (`src/`), but the granular computer-vision state machines are actively being ported.
+
+### Installation & Setup
+
+1. **Install Python 3.10+**: Ensure Python and `pip` are installed on your system.
+2. **Install Dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. **Run the Bot**:
+   ```bash
+   python -m src.main
+   ```
+
+### Emulator Support
+- **Windows / macOS**: Defaults to searching for local MuMu Player instances.
+- **Linux**: Defaults to searching for local Waydroid instances (`192.168.240.112:5555`).
 
 ## License
 This project is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0).
