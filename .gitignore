@@ -29,4 +29,5 @@ Lab
 # Claude Code configuration
 .claude/
 
-.REFACTORING_SUMMARY.md
+.REFACTORING_SUMMARY.mdrcon_manager/
+build/
