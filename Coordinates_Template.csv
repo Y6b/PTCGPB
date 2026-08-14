@@ -1,0 +1,15 @@
+State/Screen,Action Type,Image Template Filename,X Coordinate,Y Coordinate,X2 (Swipe),Y2 (Swipe),Duration/Wait (ms),Description
+Account Load,ADB Push,-,-,-,-,-,1000,Push XML to shared_prefs
+Title Screen,Vision Wait,title_screen.png,-,-,-,-,2000,Wait for title screen to appear
+Title Screen,Click,-,500,800,-,-,500,Tap to start game
+Loading Popup,Vision Click,ok_button.png,-,-,-,-,500,Click OK if generic popup appears
+Main Menu,Vision Wait,main_menu_icon.png,-,-,-,-,2000,Wait for main menu to fully load
+Main Menu,Vision Click,pack_menu_icon.png,-,-,-,-,1000,Click to navigate to pack opening screen
+Pack Selection,Vision Click,mewtwo_pack.png,-,-,-,-,1500,Select the desired pack
+Pack Opening,Swipe,-,500,300,500,1000,500,Swipe down to tear the pack open
+Card Reveal,Vision Wait,reveal_done.png,-,-,-,-,3000,Wait for all 5 cards to be revealed
+Card Reading,Vision Match,rarity_1_star.png,-,-,-,-,0,Match 1-star rarity symbol
+Card Reading,Vision Match,rarity_2_star.png,-,-,-,-,0,Match 2-star rarity symbol
+Card Reading,Vision Match,rarity_crown.png,-,-,-,-,0,Match Crown rarity symbol
+Card Reading,Vision Match,rarity_immersive.png,-,-,-,-,0,Match Immersive rarity symbol
+Cleanup,ADB Force Stop,-,-,-,-,-,1000,Force stop the app to reset state
